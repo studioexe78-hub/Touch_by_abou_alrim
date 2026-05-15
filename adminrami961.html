@@ -87,7 +87,6 @@
             <div class="tip-box">
                 <strong>📸 نظام الرفع الأوتوماتيكي الخاص برامي (مفتاح مستقر):</strong><br>
                 • اختر الصورة مباشرة من استوديو موبايلك، والكود سيرفعها مجاناً وتلقائياً بالخلفية عبر حسابك المخصص!<br>
-                • للفيديو: انسخ فقط رابط الفيديو (تيك توك، ريلز، أو يوتيوب) وضعه في خانة الفيديو.
             </div>
 
             <section class="card">
@@ -117,14 +116,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="videoUrl">رابط فيديو للعمل (إنستغرام، تيك توك، يوتيوب)</label>
-                            <input type="url" id="videoUrl" placeholder="https://instagram.com/p/xxx">
+                            <label for="postLinks">رابط خارجي إضافي للزبائن للضغط عليه (اختياري)</label>
+                            <input type="url" id="postLinks" placeholder="https://facebook.com/your_page">
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="postLinks">رابط خارجي إضافي للزبائن للضغط عليه (اختياري)</label>
-                        <input type="url" id="postLinks" placeholder="https://facebook.com/your_page">
                     </div>
 
                     <div class="form-group">
@@ -205,7 +199,6 @@
             const postLinks = document.getElementById('postLinks').value;
             const postDesc = document.getElementById('postDesc').value;
             const postNotes = document.getElementById('postNotes').value;
-            const videoUrl = document.getElementById('videoUrl').value.trim();
             const imageFile = document.getElementById('postImageFile').files[0];
 
             let finalImgUrl = "";
@@ -215,7 +208,6 @@
                     const formData = new FormData();
                     formData.append('image', imageFile);
 
-                    // تم تحديث الرابط بمفتاح الـ API الشخصي والجديد بنجاح!
                     const uploadResponse = await fetch('https://api.imgbb.com/1/upload?key=d4153c26566671cd622f560fa7986321', {
                         method: 'POST',
                         body: formData
@@ -236,7 +228,6 @@
                     desc: postDesc,
                     notes: postNotes,
                     imgUrl: finalImgUrl,
-                    videoUrl: videoUrl,
                     timestamp: Date.now(),
                     createdAt: new Date().toLocaleDateString('ar-EG')
                 });

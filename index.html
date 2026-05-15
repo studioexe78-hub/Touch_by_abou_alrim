@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Touch By Abou Alrim | ديكورات جبسم بورد ودهان موبيليا</title>
+    
+    <!-- استدعاء الخطوط وأيقونات السوشيال ميديا -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        /* الإعدادات العامة */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #fcfcfc;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: 70px; /* كرمال الهيدر الثابت */
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* الهيدر */
+        .main-header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo h1 {
+            font-size: 22px;
+            color: #222;
+        }
+
+        .logo h1 span {
+            color: #c9a054;
+        }
+
+        /* زر القائمة الجانبية */
+        .menu-btn {
+            cursor: pointer;
+            font-size: 26px;
+            color: #c9a054;
+            transition: 0.3s;
+        }
+        .menu-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* القائمة الجانبية (Sidebar) */
+        .sidebar {
+            position: fixed;
+            right: -300px;
+            top: 0;
+            width: 280px;
+            height: 100%;
+            background: #1a1a1a;
+            color: #fff;
+            z-index: 2000;
+            padding: 40px 25px;
+            transition: 0.4s ease-in-out;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+        }
+
+        .sidebar.active {
+            right: 0;
+        }
+
+        .close-btn {
+            text-align: left;
+            font-size: 24px;
+            cursor: pointer;
+            color: #777;
+            margin-bottom: 30px;
+        }
+        .close-btn:hover {
+            color: #fff;
+        }
+
+        .sidebar h2 {
+            font-size: 20px;
+            color: #c9a054;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .nav-links a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s;
+            display: block;
+        }
+
+        .nav-links a:hover {
+            color: #c9a054;
+            padding-right: 5px;
+        }
+
+        .social-section h3 {
+            font-size: 16px;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+        .social-section p {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            color: #ddd;
+            text-decoration: none;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .social-links a i {
+            font-size: 18px;
+            width: 25px;
+            color: #c9a054;
+        }
+
+        .social-links a:hover {
+            color: #c9a054;
+        }
+
+        /* البانر الرئيسي مع السلايدر المصغر المدمج بالخلفية */
+        .hero-section {
+            height: 60vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .slider-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            color: #fff;
+            max-width: 850px;
+            padding: 20px;
+        }
+
+        .hero-content h2 {
+            font-size: clamp(26px, 4vw, 42px);
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            margin-bottom: 25px;
+            color: #ccc;
+        }
+
+        .btn-whatsapp-hero {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #25D366;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .btn-whatsapp-hero:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        /* شبكة الخدمات */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            color: #222;
+            margin-bottom: 10px;
+        }
+
+        .line {
+            width: 80px;
+            height: 4px;
+            background-color: #c9a054;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+            border-bottom: 4px solid transparent;
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            border-bottom: 4px solid #c9a054;
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            display: block;
+            color: #c9a054;
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            color: #222;
+            font-size: 22px;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 15px;
+            text-align: justify;
+        }
+
+        /* قسم المناطق */
+        .locations-section {
+            background-color: #f4f4f4;
+        }
+
+        .about-box {
+            background: #fff;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+        }
+
+        .about-box h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #c9a054;
+        }
+
+        .about-box p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        /* الفوتر */
+        footer {
+            background: #111;
+            color: #aaa;
+            text-align: center;
+            padding: 35px 0;
+            font-size: 14px;
+        }
+
+        /* زر الواتساب العائم */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 2px 5px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .hero-section { height: 50vh; }
+            .about-box { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الهيدر الأعلى -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <h1>Touch By <span>Abou Alrim</span></h1>
+            </div>
+            <div class="menu-btn" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- القائمة الجانبية (Sidebar) -->
+    <div class="sidebar" id="sidebar">
+        <div class="close-btn" onclick="toggleSidebar()">
+            <i class="fas fa-times"></i>
+        </div>
+        
+        <h2>أقسام العمل</h2>
+        <ul class="nav-links">
+            <!-- تم تعديل الروابط لتنتقل لصفحات منفصلة ومستقلة للمنشورات لاحقاً -->
+            <li><a href="gypsum.html">أعمال الجبسم بورد</a></li>
+            <li><a href="furniture.html">أعمال دهان الموبيليا</a></li>
+        </ul>
+        
+        <div class="social-section">
+            <h3>تابعوا صفحاتنا للاطلاع على كل جديد</h3>
+            <p>انضموا إلينا على وسائل التواصل الاجتماعي لمشاهدة أحدث الفيديوهات والتصاميم الحصرية فور نزولها!</p>
+            <div class="social-links">
+                <a href="https://wa.me/96181830981" target="_blank"><i class="fab fa-whatsapp"></i> واتساب مباشر</a>
+                <a href="https://www.instagram.com/rjamoul416?igsh=cDhvajBpMG55cG11" target="_blank"><i class="fab fa-instagram"></i> إنستغرام</a>
+                <a href="https://www.facebook.com/share/18hmXz4aCg/" target="_blank"><i class="fab fa-facebook"></i> فيسبوك</a>
+                <a href="https://youtube.com/@arjx_touch?si=EhzUkbvemWxKZAAb" target="_blank"><i class="fab fa-youtube"></i> يوتيوب</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- البانر الرئيسي مع السلايدر -->
+    <section class="hero-section">
+        <div class="slider-container">
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80'); opacity: 1;"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1565538810844-1e1194121ac5?auto=format&fit=crop&w=1200&q=80');"></div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h2>إبداع في الجبسم بورد.. واحترافية في دهان الموبيليا</h2>
+            <p>نقدم أرقى التصاميم العصرية وبخ الأبواب والمطابخ في بيروت وضواحيها بلمسة فنية تضمن لك الجودة والجمال.</p>
+            <a href="https://wa.me/96181830981" class="btn-whatsapp-hero" target="_blank">
+                <i class="fab fa-whatsapp"></i> تواصل معنا عبر الواتساب
+            </a>
+        </div>
+    </section>
+
+    <!-- قسم الخدمات -->
+    <section id="services" class="container">
+        <div class="section-title">
+            <h2>خدماتنا المتكاملة</h2>
+            <div class="line"></div>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-hammer service-icon"></i>
+                <h3>أعمال الجبسم بورد</h3>
+                <p>تنفيذ كافة أعمال الجبسم بورد الحديثة والأسقف المستعارة المستوية والديكورية. نتميز بتصميم وتنفيذ قواطع جدارية، ديكورات شاشات تلفزيون (بلازما و LED) عصرية، تجهيز فتحات الإضاءة المخفية والسبوتلايت بدقة هندسية عالية تناسب الصالونات، غرف النوم، والمكاتب وبأجود المواد المقاومة للرطوبة والتشقق.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-paint-roller service-icon"></i>
+                <h3>دهان وبخ الموبيليا</h3>
+                <p>متخصصون في إعادة الحياة وتجديد كافة أنواع الموبيليا والأخشاب. تشمل خدماتنا بخ وغسيل المطابخ الخشبية والألمنيوم، دهان غرف النوم بالكامل، تجديد وبخ أبواب الخشب بجميع أنواعها (أبواب قشرة، مقنو، سنديان، وسويد) باستخدام تقنيات البخ الحراري (دوكو) والبولستر واللاكر لضمان ملمس ناعم كالحرير ومقاومة تامة للعوامل الجوية.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم مناطق العمل -->
+    <section class="locations-section">
+        <div class="container">
+            <div class="about-box">
+                <h2>نلبي طلباتكم أينما كنتم في بيروت وضواحيها</h2>
+                <p>نحن في <b>Touch By Abou Alrim</b> نلتزم بتقديم أرقى مستويات الخدمة لزبائننا. نعتمد في عملنا على الدقة اللامتناهية في المواعيد، النظافة التامة أثناء التنفيذ وعند التسليم، واستخدام أفضل الخامات المتوفرة في السوق لضمان ديمومة الديكور والدهان لسنوات طويلة.</p>
+                <p><b>مناطق التغطية الحالية:</b> نغطي كافة أحياء العاصمة بيروت (الأشرفية، الحمرا، قريطم، الروشة)، بالإضافة إلى ضاحية بيروت الجنوبية، الشياح، الغبيري، بعبدا، الحدث، الحازمية، سن الفيل، برج حمود، الدكوانة، ومختلف مناطق ساحل المتن وجبل لبنان.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer>
+        <div class="container">
+            <p>جميع الحقوق محفوظة &copy; 2026 | Touch By Abou Alrim</p>
+            <p style="margin-top: 10px; font-size: 12px; opacity: 0.5;">تطوير وإشراف المعلم ياسر</p>
+        </div>
+    </footer>
+
+    <!-- زر الواتساب العائم -->
+    <a href="https://wa.me/96181830981" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+        }
+
+        let slides = document.querySelectorAll('.slide');
+        let index = 0;
+        setInterval(() => {
+            slides[index].style.opacity = 0;
+            index = (index + 1) % slides.length;
+            slides[index].style.opacity = 1;
+        }, 3000);
+    </script>
+</body>
+</html>

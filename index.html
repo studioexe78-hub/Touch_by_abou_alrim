@@ -243,6 +243,41 @@
             box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
         }
 
+        /* قسم معايير الجودة */
+        .features-section {
+            background-color: #ffffff;
+            padding: 60px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .feature-item {
+            padding: 20px;
+        }
+
+        .feature-item i {
+            font-size: 30px;
+            color: #c9a054;
+            margin-bottom: 12px;
+        }
+
+        .feature-item h4 {
+            font-size: 16px;
+            color: #222;
+            margin-bottom: 8px;
+        }
+
+        .feature-item p {
+            font-size: 13px;
+            color: #666;
+        }
+
         /* شبكة الخدمات */
         section {
             padding: 80px 0;
@@ -268,8 +303,8 @@
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
         }
 
         .service-card {
@@ -277,7 +312,6 @@
             padding: 40px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            text-align: center;
             border-bottom: 4px solid transparent;
             transition: 0.3s;
         }
@@ -287,23 +321,49 @@
             transform: translateY(-5px);
         }
 
+        .service-icon-box {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
         .service-icon {
-            font-size: 40px;
-            margin-bottom: 20px;
-            display: block;
+            font-size: 45px;
             color: #c9a054;
         }
 
         .service-card h3 {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             color: #222;
-            font-size: 22px;
+            font-size: 24px;
+            text-align: center;
         }
 
         .service-card p {
-            color: #666;
+            color: #555;
             font-size: 15px;
             text-align: justify;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .service-list {
+            list-style: none;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .service-list li {
+            font-size: 14px;
+            color: #444;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .service-list li i {
+            color: #c9a054;
+            font-size: 12px;
         }
 
         /* قسم المناطق */
@@ -367,6 +427,7 @@
         @media (max-width: 768px) {
             .hero-section { height: 50vh; }
             .about-box { padding: 30px; }
+            .services-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -392,7 +453,6 @@
         
         <h2>أقسام العمل</h2>
         <ul class="nav-links">
-            <!-- تم تعديل الروابط لتنتقل لصفحات منفصلة ومستقلة للمنشورات لاحقاً -->
             <li><a href="gypsum.html">أعمال الجبسم بورد</a></li>
             <li><a href="furniture.html">أعمال دهان الموبيليا</a></li>
         </ul>
@@ -429,24 +489,61 @@
         </div>
     </section>
 
-    <!-- قسم الخدمات -->
+    <!-- قسم معايير الجودة والمميزات المضاف حديثاً -->
+    <div class="features-section">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class="fas fa-ruler-combined"></i>
+                    <h4>دقة عالية بالقياسات</h4>
+                    <p>نهتم بأدق التفاصيل الهندسية الفنية والتنفيذية لضمان تسليم متقن.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-layer-group"></i>
+                    <h4>مواد ممتازة الجودة</h4>
+                    <p>نعتمد على خامات وخلفيات متينة تدوم لسنوات طويلة دون تشققات.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-clock"></i>
+                    <h4>التزام كامل بالمواعيد</h4>
+                    <p>تسليم كافة المشاريع والورش والقطع في الوقت المحدد تماماً وبأفضل صورة.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- قسم الخدمات المطور وفيه تم فصل المقالات -->
     <section id="services" class="container">
         <div class="section-title">
-            <h2>خدماتنا المتكاملة</h2>
+            <h2>خدماتنا الاحترافية</h2>
             <div class="line"></div>
         </div>
         
         <div class="services-grid">
+            <!-- كرت أعمال الجبسم بورد -->
             <div class="service-card">
-                <i class="fas fa-hammer service-icon"></i>
-                <h3>أعمال الجبسم بورد</h3>
-                <p>تنفيذ كافة أعمال الجبسم بورد الحديثة والأسقف المستعارة المستوية والديكورية. نتميز بتصميم وتنفيذ قواطع جدارية، ديكورات شاشات تلفزيون (بلازما و LED) عصرية، تجهيز فتحات الإضاءة المخفية والسبوتلايت بدقة هندسية عالية تناسب الصالونات، غرف النوم، والمكاتب وبأجود المواد المقاومة للرطوبة والتشقق.</p>
+                <div class="service-icon-box"><i class="fas fa-hammer service-icon"></i></div>
+                <h3>أعمال الجبسم بورد والديكور الداخلي</h3>
+                <p>نعمل على تنفيذ مختلف أنواع ديكورات الجبسم بورد للأسقف والجدران بطريقة احترافية تضيف للمكان طابعاً مميزاً يجمع بين الفخامة والعملية، مع مواكبة أحدث الاتجاهات الحديثة في عالم التشطيب والديكور لضمان نتائج فنية راقية تناسب الصالونات، غرف النوم، والمكاتب العصرية والراقية.</p>
+                <ul class="service-list">
+                    <li><i class="fas fa-check"></i> تنفيذ أسقف جبسن بورد حديثة وكلاسيكية</li>
+                    <li><i class="fas fa-check"></i> تصميم وتنفيذ ديكورات وقواطع جدارية داخلية</li>
+                    <li><i class="fas fa-check"></i> تنفيذ إضاءة LED مخفية وديكورات عصرية مستقرة</li>
+                    <li><i class="fas fa-check"></i> أعمال التشطيب والديكور الداخلي المتكامل</li>
+                </ul>
             </div>
 
+            <!-- كرت أعمال دهان الموبيليا -->
             <div class="service-card">
-                <i class="fas fa-paint-roller service-icon"></i>
-                <h3>دهان وبخ الموبيليا</h3>
-                <p>متخصصون في إعادة الحياة وتجديد كافة أنواع الموبيليا والأخشاب. تشمل خدماتنا بخ وغسيل المطابخ الخشبية والألمنيوم، دهان غرف النوم بالكامل، تجديد وبخ أبواب الخشب بجميع أنواعها (أبواب قشرة، مقنو، سنديان، وسويد) باستخدام تقنيات البخ الحراري (دوكو) والبولستر واللاكر لضمان ملمس ناعم كالحرير ومقاومة تامة للعوامل الجوية.</p>
+                <div class="service-icon-box"><i class="fas fa-paint-roller service-icon"></i></div>
+                <h3>أعمال دهان وتجديد الموبيليا</h3>
+                <p>نتخصص في أعمال دهان وتجديد الموبيليا باستخدام أفضل المواد وأحدث التقنيات الاحترافية، لإعادة إحياء الأثاث ومنحه مظهراً أنيقاً وعصرياً يناسب مختلف الأذواق والمساحات. نعمل على تحويل القطع والأخشاب بلمسات فنية تضمن حماية السطح ونعومته التامة والمقاومة للخدوش.</p>
+                <ul class="service-list">
+                    <li><i class="fas fa-check"></i> دهان وتجديد وصيانة الموبيليا (غرف نوم)</li>
+                    <li><i class="fas fa-check"></i> بخ وغسيل المطابخ الخشبية</li>
+                    <li><i class="fas fa-check"></i> تجديد وبخ أبواب الخشب بجميع أنواعها</li>
+                    <li><i class="fas fa-check"></i> تنفيذ تصاميم وتشطيبات وألوان خاصة حسب الطلب</li>
+                </ul>
             </div>
         </div>
     </section>
@@ -456,8 +553,8 @@
         <div class="container">
             <div class="about-box">
                 <h2>نلبي طلباتكم أينما كنتم في بيروت وضواحيها</h2>
-                <p>نحن في <b>Touch By Abou Alrim</b> نلتزم بتقديم أرقى مستويات الخدمة لزبائننا. نعتمد في عملنا على الدقة اللامتناهية في المواعيد، النظافة التامة أثناء التنفيذ وعند التسليم، واستخدام أفضل الخامات المتوفرة في السوق لضمان ديمومة الديكور والدهان لسنوات طويلة.</p>
-                <p><b>مناطق التغطية الحالية:</b> نغطي كافة أحياء العاصمة بيروت (الأشرفية، الحمرا، قريطم، الروشة)، بالإضافة إلى ضاحية بيروت الجنوبية، الشياح، الغبيري، بعبدا، الحدث، الحازمية، سن الفيل، برج حمود، الدكوانة، ومختلف مناطق ساحل المتن وجبل لبنان.</p>
+                <p>نحن في <b>Touch By Abou Alrim</b> نلتزم بتقديم أرقى مستويات الخدمة لزبائننا من خلال تقديم حلول وتصاميم مخصصة تناسب احتياجات كل عميل، جاعلين من كل مساحة مكاناً أكثر راحة، متانة، وجمالاً.</p>
+                <p><b>مناطق التغطية الحالية:</b> نغطي كافة أحياء العاصمة بيروت (الأشرفية، الحمرا، قريطم، الروشة)، بالإضافة إلى ضاحية بيروت الجنوبية، الشياح، الغبيري، ببعدا، الحدث، الحازمية، سن الفيل، برج حمود، الدكوانة، ومختلف مناطق ساحل المتن وجبل لبنان.</p>
             </div>
         </div>
     </section>

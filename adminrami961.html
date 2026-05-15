@@ -85,8 +85,8 @@
             </header>
 
             <div class="tip-box">
-                <strong>📸 نظام الرفع الأوتوماتيكي المطور لرامي:</strong><br>
-                • اختر الصورة مباشرة من استوديو موبايلك، والكود سيرفعها مجاناً وتلقائياً بالخلفية!<br>
+                <strong>📸 نظام الرفع الأوتوماتيكي الخاص برامي (مفتاح مستقر):</strong><br>
+                • اختر الصورة مباشرة من استوديو موبايلك، والكود سيرفعها مجاناً وتلقائياً بالخلفية عبر حسابك المخصص!<br>
                 • للفيديو: انسخ فقط رابط الفيديو (تيك توك، ريلز، أو يوتيوب) وضعه في خانة الفيديو.
             </div>
 
@@ -113,7 +113,6 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="postImageFile">اختر صورة العمل من الموبايل (أوتوماتيكي)</label>
-                            <!-- هنا العميل بيختار الصورة فوراً من موبايله -->
                             <input type="file" id="postImageFile" accept="image/*">
                         </div>
 
@@ -164,7 +163,6 @@
         </div>
     </div>
 
-    <!-- كود فايربيس المطور مع ميزة الرفع الخلفي التلقائي للصورة -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, addDoc, getDocs, doc, deleteDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -196,7 +194,6 @@
 
         window.logout = function() { document.location.reload(); }
 
-        // معالجة الفروم والرفع التلقائي للصورة بالخلفية
         document.getElementById('postForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const btnSubmit = e.target.querySelector('.btn-submit');
@@ -214,26 +211,24 @@
             let finalImgUrl = "";
 
             try {
-                // إذا اختار رامي صورة من موبايله، سيتم رفعها تلقائياً بالخلفية بدون تدخل منه
                 if (imageFile) {
                     const formData = new FormData();
                     formData.append('image', imageFile);
 
-                    // نستخدم سرفر الرفع المجاني السريع المجاني التابع لـ ImgBB عبر مفتاح API عام ومجاني ومفتوح
-                    const uploadResponse = await fetch('https://api.imgbb.com/1/upload?key=8fd452f010f368bbef4ef56e9c90be6c', {
+                    // تم تحديث الرابط بمفتاح الـ API الشخصي والجديد بنجاح!
+                    const uploadResponse = await fetch('https://api.imgbb.com/1/upload?key=d4153c26566671cd622f560fa7986321', {
                         method: 'POST',
                         body: formData
                     });
 
                     const uploadResult = await uploadResponse.json();
                     if (uploadResult.success) {
-                        finalImgUrl = uploadResult.data.url; // أخذنا رابط الصورة المباشر تلقائياً!
+                        finalImgUrl = uploadResult.data.url;
                     } else {
-                        throw new Error("فشل الرفع التلقائي للصورة");
+                        throw new Error("فشل الرفع عبر مفتاح API");
                     }
                 }
 
-                // حفظ الداتا بالكامل في Firestore
                 await addDoc(collection(db, "posts"), {
                     page: postPage,
                     title: postTitle,
@@ -246,12 +241,12 @@
                     createdAt: new Date().toLocaleDateString('ar-EG')
                 });
 
-                alert('تم رفع الصورة ونشر المنشور بنجاح تام وبشكل أوتوماتيكي! 🎉');
+                alert('تم رفع الصورة ونشر المنشور بنجاح أوتوماتيكي كامل! 🎉');
                 document.getElementById('postForm').reset();
                 loadPreviousPosts();
             } catch (error) {
                 console.error(error);
-                alert('حدث خطأ أثناء النشر تلقائياً، يرجى التأكد من اتصال الإنترنت.');
+                alert('حدث خطأ أثناء النشر، تأكد من أن حجم الصورة مناسب ومن جودة اتصال الإنترنت.');
             } finally {
                 btnSubmit.innerHTML = '<i class="fas fa-paper-plane"></i> نشر العمل الآن';
                 btnSubmit.disabled = false;

@@ -3,292 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أعمال دهان الموبيليا | Touch By Abou Alrim</title>
-    
-    <!-- الخطوط والأيقونات -->
+    <title>معرض دهان الموبيليا | Touch By Abou Alrim</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
-        }
-
-        body {
-            background-color: #f9f9f9;
-            color: #222;
-            line-height: 1.6;
-        }
-
-        /* الهيدر أو البانر العلوي */
-        header {
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url('https://images.unsplash.com/photo-1538688525198-9b88f6f53126?q=80&w=1200') no-repeat center center/cover;
-            color: #fff;
-            text-align: center;
-            padding: 80px 20px;
-            border-bottom: 4px solid #c9a054;
-        }
-
-        header h1 {
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-
-        header h1 span {
-            color: #c9a054;
-        }
-
-        header p {
-            font-size: 16px;
-            color: #ccc;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* زر العودة للموقع الرئيسي */
-        .back-nav {
-            max-width: 1200px;
-            margin: 30px auto 0 auto;
-            padding: 0 20px;
-        }
-
-        .btn-back {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: #1a1a1a;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .btn-back:hover {
-            color: #c9a054;
-        }
-
-        /* حاوية المعرض (الشبكة) */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px 80px 20px;
-        }
-
-        .posts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        /* ستايل كرت المنشور */
-        .post-card {
-            background: #fff;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border: 1px solid #eee;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .post-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
-
-        .post-media {
-            width: 100%;
-            height: 240px;
-            background-color: #000;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .post-media img, .post-media video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .post-content {
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .post-date {
-            font-size: 12px;
-            color: #888;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .post-content h3 {
-            font-size: 20px;
-            color: #1a1a1a;
-            margin-bottom: 12px;
-            font-weight: 700;
-        }
-
-        .post-content p {
-            font-size: 14px;
-            color: #555;
-            text-align: justify;
-            white-space: pre-wrap;
-            flex-grow: 1;
-        }
-
-        .post-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: #c9a054;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 600;
-            margin-top: 15px;
-            transition: 0.2s;
-        }
-
-        .post-link:hover {
-            color: #1a1a1a;
-        }
-
-        /* رسالة انتظار أو عدم وجود بيانات */
-        .loading-msg {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 60px 20px;
-            color: #666;
-            background: #fff;
-            border-radius: 12px;
-            border: 1px dashed #ccc;
-        }
-
-        .loading-msg i {
-            font-size: 40px;
-            color: #c9a054;
-            margin-bottom: 15px;
-        }
-
-        @media (max-width: 480px) {
-            header h1 { font-size: 28px; }
-            .posts-grid { grid-template-columns: 1fr; }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+        body { background-color: #f9f9f9; color: #333; line-height: 1.6; }
+        header { background: #1a1a1a; color: #fff; padding: 40px 20px; text-align: center; border-bottom: 4px solid #c9a054; }
+        header h1 { font-size: 28px; margin-bottom: 10px; }
+        header h1 span { color: #c9a054; }
+        .back-link { display: inline-block; margin-top: 15px; color: #fff; text-decoration: none; font-weight: bold; }
+        .back-link:hover { color: #c9a054; }
+        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+        .posts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
+        .post-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: 0.3s; border: 1px solid #eee; }
+        .post-card:hover { transform: translateY(-10px); }
+        .post-media img, .post-media video { width: 100%; height: 200px; object-fit: cover; border-bottom: 3px solid #c9a054; }
+        .post-content { padding: 20px; }
+        .post-date { font-size: 12px; color: #999; display: block; margin-bottom: 10px; }
+        .post-content h3 { font-size: 20px; color: #1a1a1a; margin-bottom: 10px; }
+        .post-content p { font-size: 14px; color: #666; margin-bottom: 15px; }
+        .external-btn { display: inline-block; padding: 8px 16px; background: #c9a054; color: #fff; text-decoration: none; border-radius: 5px; font-size: 13px; font-weight: bold; }
+        .loading-msg { text-align: center; padding: 50px; font-size: 18px; color: #666; grid-column: 1 / -1; }
+        @media (max-width: 600px) { header h1 { font-size: 22px; } }
     </style>
 </head>
 <body>
 
-    <!-- الهيدر -->
     <header>
         <h1>معرض أعمال <span>دهان الموبيليا</span></h1>
-        <p>تجديد وتلوين غرف النوم، الصالونات، الطاولات، والمطابخ بأجود أنواع الدهانات والتشطيبات الفاخرة</p>
+        <p>لمساتنا الفنية في تجديد وتلوين الموبيليا والأخشاب بأعلى جودة</p>
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-right"></i> العودة للموقع الرئيسي</a>
     </header>
 
-    <!-- زر الرجوع -->
-    <div class="back-nav">
-        <a href="index.html" class="btn-back"><i class="fas fa-arrow-right"></i> العودة للموقع الرئيسي</a>
+    <div class="container">
+        <div class="posts-grid" id="furnitureContainer">
+            <div class="loading-msg">جاري تحميل المعرض...</div>
+        </div>
     </div>
 
-    <!-- حاوية الأعمال الديناميكية -->
-    <main class="container">
-        <div class="posts-grid" id="furnitureContainer">
-            <div class="loading-msg">
-                <i class="fas fa-circle-notch fa-spin"></i>
-                <h3>جاري تحميل الروائع والأعمال من السيرفر السحابي...</h3>
-            </div>
-        </div>
-    </main>
-
-    <!-- سكربت الفايربيس والربط الديناميكي -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, query, where, getDocs, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        // الـ Config الخاصة بمشروعك
         const firebaseConfig = {
             apiKey: "AIzaSyBJE9RDaxqogaP6ku-zX7pOEcEXhEdd1Qs",
             authDomain: "touch-aboualrim.firebaseapp.com",
             projectId: "touch-aboualrim",
             storageBucket: "touch-aboualrim.firebasestorage.app",
             messagingSenderId: "1034802739480",
-            appId: "1:1034802739480:web:e1ecf69da0690ba959866d",
-            measurementId: "G-HFFKY3EE6H"
+            appId: "1:1034802739480:web:e1ecf69da0690ba959866d"
         };
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        async function loadFurniturePosts() {
-            const grid = document.getElementById('furnitureContainer');
-            
+        async function loadPosts() {
+            const container = document.getElementById('furnitureContainer');
             try {
-                // عمل كويري لجلب منشورات 'furniture' ومرتبة تنازلياً حسب الوقت (الأحدث فوق)
-                const q = query(collection(db, "posts"), where("page", "==", "furniture"), orderBy("timestamp", "desc"));
+                const q = query(collection(db, "posts"), where("page", "==", "furniture"));
                 const querySnapshot = await getDocs(q);
                 
                 if (querySnapshot.empty) {
-                    grid.innerHTML = `
-                        <div class="loading-msg" style="border-style: solid;">
-                            <i class="fas fa-couch"></i>
-                            <h3>سيتم إضافة أعمال دهان الموبيليا قريباً جداً!</h3>
-                            <p>الأدمن رامي لم ينشر أي عمل في هذا القسم بعد.</p>
-                        </div>`;
+                    container.innerHTML = `<div class="loading-msg">لا يوجد أعمال منشورة في هذا القسم حالياً.</div>`;
                     return;
                 }
-
-                grid.innerHTML = ''; // إزالة جملة التحميل
-
+                
+                container.innerHTML = '';
                 querySnapshot.forEach((docSnap) => {
                     const post = docSnap.data();
-                    
-                    // توليد كود الميديا بناءً على نوع الملف المرفوع
-                    let mediaHTML = '';
-                    if (post.mediaType === 'image' && post.mediaUrl) {
-                        mediaHTML = `<div class="post-media"><img src="${post.mediaUrl}" alt="${post.title}" loading="lazy"></div>`;
-                    } else if (post.mediaType === 'video' && post.mediaUrl) {
-                        mediaHTML = `<div class="post-media"><video controls muted><source src="${post.mediaUrl}" type="video/mp4"></video></div>`;
+                    let media = '';
+                    if (post.imgUrl) {
+                        media = `<div class="post-media"><img src="${post.imgUrl}" alt="صورة العمل"></div>`;
+                    } else if (post.videoUrl) {
+                        media = `<div class="post-media"><video controls><source src="${post.videoUrl}"></video></div>`;
                     }
 
-                    // توليد رابط إضافي في حال كان متوفر
-                    let linkHTML = post.link ? `<a href="${post.link}" target="_blank" class="post-link"><i class="fas fa-external-link-alt"></i> مشاهدة تفاصيل إضافية</a>` : '';
+                    const linkBtn = post.link ? `<a href="${post.link}" target="_blank" class="external-btn">شاهد المزيد</a>` : '';
 
-                    // بناء كرت المنشور بالكامل
-                    const card = document.createElement('article');
-                    card.className = 'post-card';
-                    card.innerHTML = `
-                        ${mediaHTML}
-                        <div class="post-content" style="${!mediaHTML ? 'padding-top: 35px;' : ''}">
-                            <span class="post-date"><i class="far fa-calendar-alt"></i> ${post.createdAt}</span>
-                            <h3>${post.title}</h3>
-                            <p>${post.desc}</p>
-                            ${linkHTML}
-                        </div>
+                    container.innerHTML += `
+                        <article class="post-card">
+                            ${media}
+                            <div class="post-content">
+                                <span class="post-date"><i class="far fa-calendar-alt"></i> ${post.createdAt || ''}</span>
+                                <h3>${post.title}</h3>
+                                <p>${post.desc}</p>
+                                ${linkBtn}
+                            </div>
+                        </article>
                     `;
-                    grid.appendChild(card);
                 });
-
-            } catch(error) {
-                console.error("Error drawing Furniture view: ", error);
-                grid.innerHTML = `
-                    <div class="loading-msg" style="color: #d9534f; border-color: #d9534f;">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <h3>عذراً، فشل الاتصال بقاعدة البيانات السحابية</h3>
-                        <p>تأكد من تفعيل الـ Rules في كونسول الفايربيس والسماح بالقراءة للجميع.</p>
-                    </div>`;
+            } catch (err) {
+                console.error(err);
+                container.innerHTML = `<div class="loading-msg" style="color:red;">عذراً، فشل الاتصال بقاعدة البيانات.</div>`;
             }
         }
-
-        // تشغيل الدالة فوراً
-        loadFurniturePosts();
+        loadPosts();
     </script>
 </body>
 </html>

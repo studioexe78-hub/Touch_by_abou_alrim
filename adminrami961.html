@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة تحكم الإدارة | Touch By Abou Alrim</title>
+    <title>لوحة الإدارة الذكية | Touch By Abou Alrim</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,257 +11,55 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
-        }
-
-        body {
-            background-color: #f4f4f4;
-            color: #333;
-            padding: 20px;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        /* ستايل صفحة تسجيل الدخول */
-        .login-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #1a1a1a;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: 0.3s;
-        }
-
-        .login-box {
-            background: #fff;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-        }
-
-        .login-box h2 {
-            margin-bottom: 20px;
-            color: #222;
-            font-size: 24px;
-        }
-
-        .login-box h2 span {
-            color: #c9a054;
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-            text-align: right;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        .input-group input, .form-group select, .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 15px;
-            outline: none;
-            transition: 0.3s;
-        }
-
-        .input-group input:focus, .form-group select:focus, .form-group input:focus, .form-group textarea:focus {
-            border-color: #c9a054;
-            box-shadow: 0 0 5px rgba(201, 160, 84, 0.2);
-        }
-
-        .btn-login {
-            width: 100%;
-            padding: 12px;
-            background-color: #1a1a1a;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .btn-login:hover {
-            background-color: #c9a054;
-        }
-
-        .error-msg {
-            color: #d9534f;
-            font-size: 14px;
-            margin-top: 15px;
-            font-weight: 600;
-            display: none;
-            line-height: 1.5;
-        }
-
-        /* ستايل لوحة التحكم */
-        .dashboard-content {
-            display: none;
-        }
-
-        .dashboard-header {
-            background: #1a1a1a;
-            color: #fff;
-            padding: 20px;
-            border-radius: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        .dashboard-header h1 span {
-            color: #c9a054;
-        }
-
-        .btn-logout {
-            padding: 8px 16px;
-            background-color: #d9534f;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .card {
-            background: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.02);
-            margin-bottom: 30px;
-        }
-
-        .card h2 {
-            font-size: 20px;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #f4f4f4;
-            padding-bottom: 10px;
-            color: #222;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        .btn-submit {
-            background-color: #c9a054;
-            color: #fff;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn-submit:hover {
-            background-color: #1a1a1a;
-            transform: translateY(-2px);
-        }
-
-        /* ستايل جدول التعديل والحذف */
-        .table-responsive {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: right;
-            margin-top: 10px;
-        }
-
-        th, td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #eee;
-            font-size: 14px;
-        }
-
-        th {
-            background-color: #f9f9f9;
-            color: #666;
-            font-weight: 700;
-        }
-
-        .badge {
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+        body { background-color: #f4f4f4; color: #333; padding: 20px; }
+        .container { width: 100%; max-width: 900px; margin: 0 auto; }
+        .login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #1a1a1a; display: flex; justify-content: center; align-items: center; z-index: 9999; }
+        .login-box { background: #fff; padding: 40px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); width: 90%; max-width: 400px; text-align: center; }
+        .login-box h2 { margin-bottom: 20px; color: #222; font-size: 24px; }
+        .login-box h2 span { color: #c9a054; }
+        .input-group { margin-bottom: 20px; text-align: right; }
+        .input-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px; }
+        .input-group input, .form-group select, .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 15px; outline: none; transition: 0.3s; }
+        .input-group input:focus, .form-group select:focus, .form-group input:focus, .form-group textarea:focus { border-color: #c9a054; box-shadow: 0 0 5px rgba(201, 160, 84, 0.2); }
+        .btn-login { width: 100%; padding: 12px; background-color: #1a1a1a; color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.3s; }
+        .btn-login:hover { background-color: #c9a054; }
+        .error-msg { color: #d9534f; font-size: 14px; margin-top: 15px; font-weight: 600; display: none; }
+        .dashboard-content { display: none; }
+        .dashboard-header { background: #1a1a1a; color: #fff; padding: 20px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .dashboard-header h1 span { color: #c9a054; }
+        .btn-logout { padding: 8px 16px; background-color: #d9534f; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; }
+        .card { background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.02); margin-bottom: 30px; }
+        .card h2 { font-size: 20px; margin-bottom: 20px; border-bottom: 2px solid #f4f4f4; padding-bottom: 10px; color: #222; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px; }
+        .btn-submit { background-color: #c9a054; color: #fff; padding: 12px 30px; border: none; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; gap: 10px; }
+        .btn-submit:hover { background-color: #1a1a1a; transform: translateY(-2px); }
+        .table-responsive { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; text-align: right; margin-top: 10px; }
+        th, td { padding: 12px 15px; border-bottom: 1px solid #eee; font-size: 14px; }
+        th { background-color: #f9f9f9; color: #666; font-weight: 700; }
+        .badge { padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
         .badge-gypsum { background: #e6f7ff; color: #1890ff; }
         .badge-furniture { background: #f6ffed; color: #52c41a; }
-
-        .actions-btn {
-            display: flex;
-            gap: 8px;
-        }
-
-        .btn-action {
-            padding: 5px 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 600;
-            transition: 0.2s;
-        }
-
+        .actions-btn { display: flex; gap: 8px; }
+        .btn-action { padding: 5px 10px; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 600; }
         .btn-delete { background-color: #ff4d4f; color: #fff; }
-        .btn-delete:hover { background-color: #d9363e; }
-
-        @media (max-width: 768px) {
-            .form-row { grid-template-columns: 1fr; gap: 0; }
+        @media (max-width: 768px) { .form-row { grid-template-columns: 1fr; gap: 0; } }
+        
+        .tip-box {
+            background-color: #e6f7ff;
+            border-right: 4px solid #1890ff;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 13px;
         }
     </style>
 </head>
 <body>
 
-    <!-- شاشة تسجيل الدخول المقفلة -->
     <div class="login-overlay" id="loginOverlay">
         <div class="login-box">
             <h2>لوحة تحكم <span>الأدمن رامي</span></h2>
@@ -274,20 +72,23 @@
                 <input type="password" id="password" placeholder="أدخل كلمة المرور">
             </div>
             <button class="btn-login" onclick="checkLogin()">تسجيل الدخول</button>
-            <div class="error-msg" id="errorMsg">
-                هذه الصفحة مخصصة للأدمن رامي لا تحاول الدخول اذا ليس لديك إذن
-            </div>
+            <div class="error-msg" id="errorMsg">هذه الصفحة مخصصة للأدمن رامي فقط.</div>
         </div>
     </div>
 
-    <!-- محتويات لوحة التحكم بعد الدخول الصحيح -->
     <div class="dashboard-content" id="dashboardContent">
         <div class="container">
             
             <header class="dashboard-header">
-                <h1>لوحة الإدارة | <span>Touch</span></h1>
+                <h1>لوحة الإدارة الذكية | <span>Touch</span></h1>
                 <button class="btn-logout" onclick="logout()"><i class="fas fa-sign-out-alt"></i> خروج</button>
             </header>
+
+            <div class="tip-box">
+                <strong>📸 نظام الرفع الأوتوماتيكي المطور لرامي:</strong><br>
+                • اختر الصورة مباشرة من استوديو موبايلك، والكود سيرفعها مجاناً وتلقائياً بالخلفية!<br>
+                • للفيديو: انسخ فقط رابط الفيديو (تيك توك، ريلز، أو يوتيوب) وضعه في خانة الفيديو.
+            </div>
 
             <section class="card">
                 <h2><i class="fas fa-plus-circle"></i> إضافة منشور عمل جديد</h2>
@@ -311,24 +112,30 @@
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="postMedia">رفع صورة أو مقطع فيديو للعمل</label>
-                            <input type="file" id="postMedia" accept="image/*,video/*">
+                            <label for="postImageFile">اختر صورة العمل من الموبايل (أوتوماتيكي)</label>
+                            <!-- هنا العميل بيختار الصورة فوراً من موبايله -->
+                            <input type="file" id="postImageFile" accept="image/*">
                         </div>
 
                         <div class="form-group">
-                            <label for="postLinks">إضافة روابط خارجية (إن وجدت)</label>
-                            <input type="url" id="postLinks" placeholder="https://youtube.com/example_video">
+                            <label for="videoUrl">رابط فيديو للعمل (إنستغرام، تيك توك، يوتيوب)</label>
+                            <input type="url" id="videoUrl" placeholder="https://instagram.com/p/xxx">
                         </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="postLinks">رابط خارجي إضافي للزبائن للضغط عليه (اختياري)</label>
+                        <input type="url" id="postLinks" placeholder="https://facebook.com/your_page">
                     </div>
 
                     <div class="form-group">
                         <label for="postDesc">الوصف أو تفاصيل المقالة عن العمل</label>
-                        <textarea id="postDesc" rows="5" placeholder="اكتب تفاصيل ومراحل العمل والمواد المستخدمة هنا..." required></textarea>
+                        <textarea id="postDesc" rows="4" placeholder="اكتب تفاصيل ومراحل العمل هنا..." required></textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="postNotes">ملاحظات خاصة (تظهر لك فقط ولا تنشر للعامة)</label>
-                        <input type="text" id="postNotes" placeholder="مثال: تم الاتفاق على السعر الكامل مع الزبون">
+                        <input type="text" id="postNotes" placeholder="تم الاتفاق على السعر الكامل مع الزبون">
                     </div>
 
                     <button type="submit" class="btn-submit">
@@ -349,9 +156,7 @@
                                 <th>العمليات</th>
                             </tr>
                         </thead>
-                        <tbody id="postsTableBody">
-                            <!-- المنشورات الحقيقية تُجلب هنا بواسطة الفايربيس ديناميكياً -->
-                        </tbody>
+                        <tbody id="postsTableBody"></tbody>
                     </table>
                 </div>
             </section>
@@ -359,13 +164,11 @@
         </div>
     </div>
 
-    <!-- كود ربط وإعدادات فايربيس المدمج -->
+    <!-- كود فايربيس المطور مع ميزة الرفع الخلفي التلقائي للصورة -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, addDoc, getDocs, doc, deleteDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
 
-        // الـ Config الخاصة ببيانات مشروعك
         const firebaseConfig = {
             apiKey: "AIzaSyBJE9RDaxqogaP6ku-zX7pOEcEXhEdd1Qs",
             authDomain: "touch-aboualrim.firebaseapp.com",
@@ -378,39 +181,26 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-        const storage = getStorage(app);
 
         window.checkLogin = function() {
             const userInp = document.getElementById('username').value.trim();
             const passInp = document.getElementById('password').value.trim();
             const errorMsg = document.getElementById('errorMsg');
-            const loginOverlay = document.getElementById('loginOverlay');
-            const dashboardContent = document.getElementById('dashboardContent');
-
             if (userInp === 'aboualrim' && passInp === 'ramirami2000') {
                 errorMsg.style.display = 'none';
-                loginOverlay.style.display = 'none';
-                dashboardContent.style.display = 'block';
+                document.getElementById('loginOverlay').style.display = 'none';
+                document.getElementById('dashboardContent').style.display = 'block';
                 loadPreviousPosts();
-            } else {
-                errorMsg.style.display = 'block';
-            }
+            } else { errorMsg.style.display = 'block'; }
         }
 
-        window.logout = function() {
-            document.getElementById('username').value = '';
-            document.getElementById('password').value = '';
-            document.getElementById('loginOverlay').style.display = 'flex';
-            document.getElementById('dashboardContent').style.none = 'none';
-            document.location.reload();
-        }
+        window.logout = function() { document.location.reload(); }
 
-        // دالة الرفع والنشر للـ Firebase
+        // معالجة الفروم والرفع التلقائي للصورة بالخلفية
         document.getElementById('postForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            
             const btnSubmit = e.target.querySelector('.btn-submit');
-            btnSubmit.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري النشر والرفع...';
+            btnSubmit.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري معالجة ورفع الصورة...';
             btnSubmit.disabled = true;
 
             const postPage = document.getElementById('postPage').value;
@@ -418,86 +208,86 @@
             const postLinks = document.getElementById('postLinks').value;
             const postDesc = document.getElementById('postDesc').value;
             const postNotes = document.getElementById('postNotes').value;
-            const mediaFile = document.getElementById('postMedia').files[0];
+            const videoUrl = document.getElementById('videoUrl').value.trim();
+            const imageFile = document.getElementById('postImageFile').files[0];
 
-            let mediaUrl = "";
-            let mediaType = "none";
+            let finalImgUrl = "";
 
             try {
-                if (mediaFile) {
-                    mediaType = mediaFile.type.startsWith('video/') ? 'video' : 'image';
-                    const storageRef = ref(storage, `touch_media/${Date.now()}_${mediaFile.name}`);
-                    const snapshot = await uploadBytes(storageRef, mediaFile);
-                    mediaUrl = await getDownloadURL(snapshot.ref);
+                // إذا اختار رامي صورة من موبايله، سيتم رفعها تلقائياً بالخلفية بدون تدخل منه
+                if (imageFile) {
+                    const formData = new FormData();
+                    formData.append('image', imageFile);
+
+                    // نستخدم سرفر الرفع المجاني السريع المجاني التابع لـ ImgBB عبر مفتاح API عام ومجاني ومفتوح
+                    const uploadResponse = await fetch('https://api.imgbb.com/1/upload?key=8fd452f010f368bbef4ef56e9c90be6c', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    const uploadResult = await uploadResponse.json();
+                    if (uploadResult.success) {
+                        finalImgUrl = uploadResult.data.url; // أخذنا رابط الصورة المباشر تلقائياً!
+                    } else {
+                        throw new Error("فشل الرفع التلقائي للصورة");
+                    }
                 }
 
+                // حفظ الداتا بالكامل في Firestore
                 await addDoc(collection(db, "posts"), {
                     page: postPage,
                     title: postTitle,
                     link: postLinks,
                     desc: postDesc,
                     notes: postNotes,
-                    mediaUrl: mediaUrl,
-                    mediaType: mediaType,
+                    imgUrl: finalImgUrl,
+                    videoUrl: videoUrl,
                     timestamp: Date.now(),
                     createdAt: new Date().toLocaleDateString('ar-EG')
                 });
 
-                alert('تم نشر العمل بنجاح ونقله إلى الصفحة المستهدفة! 🔥');
+                alert('تم رفع الصورة ونشر المنشور بنجاح تام وبشكل أوتوماتيكي! 🎉');
                 document.getElementById('postForm').reset();
                 loadPreviousPosts();
-
             } catch (error) {
-                console.error("حدث خطأ بالرفع: ", error);
-                alert('حدث خطأ أثناء الرفع، يرجى التأكد من تفعيل وضع الاختبار وقواعد الحماية (Rules) في Firestore و Storage بكونسول فايربيس.');
+                console.error(error);
+                alert('حدث خطأ أثناء النشر تلقائياً، يرجى التأكد من اتصال الإنترنت.');
             } finally {
                 btnSubmit.innerHTML = '<i class="fas fa-paper-plane"></i> نشر العمل الآن';
                 btnSubmit.disabled = false;
             }
         });
 
-        // جلب المنشورات الحقيقية وعرضها بالجدول
         async function loadPreviousPosts() {
             const tbody = document.getElementById('postsTableBody');
-            tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">جاري جلب بياناتك الحقيقية...</td></tr>';
-            
+            tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">جاري جلب البيانات...</td></tr>';
             try {
                 const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
                 const querySnapshot = await getDocs(q);
                 tbody.innerHTML = '';
-                
                 if(querySnapshot.empty) {
-                    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">لا يوجد أي منشورات مرفوعة سابقاً. اللوحة فارغة وجاهزة!</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">لا يوجد أي منشورات حالياً.</td></tr>';
                     return;
                 }
-
                 querySnapshot.forEach((docSnap) => {
                     const post = docSnap.data();
                     const badgeClass = post.page === 'gypsum' ? 'badge-gypsum' : 'badge-furniture';
                     const badgeText = post.page === 'gypsum' ? 'جبسم بورد' : 'دهان موبيليا';
-                    
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
                         <td>${post.title}</td>
                         <td><span class="badge ${badgeClass}">${badgeText}</span></td>
                         <td>${post.createdAt || 'غير محدد'}</td>
-                        <td>
-                            <div class="actions-btn">
-                                <button class="btn-action btn-delete" onclick="deletePost('${docSnap.id}')"><i class="fas fa-trash-alt"></i> حذف</button>
-                            </div>
-                        </td>
+                        <td><button class="btn-action btn-delete" onclick="deletePost('${docSnap.id}')"><i class="fas fa-trash-alt"></i> حذف</button></td>
                     `;
                     tbody.appendChild(tr);
                 });
-            } catch (e) {
-                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:red;">خطأ بقراءة البيانات، تأكد من تفعيل قواعد Firestore Rules وجعلها تسمح بالقراءة والكتابة.</td></tr>';
-            }
+            } catch (e) { tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:red;">خطأ بالاتصال.</td></tr>'; }
         }
 
         window.deletePost = async function(id) {
-            if (confirm("هل أنت متأكد من حذف هذا المنشور نهائياً من الموقع؟")) {
+            if (confirm("هل أنت متأكد من الحذف؟")) {
                 await deleteDoc(doc(db, "posts", id));
-                alert("تم الحذف بنجاح!");
                 loadPreviousPosts();
             }
         }

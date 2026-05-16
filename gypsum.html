@@ -3,55 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>معرض الأعمال الاحترافي | Touch By Abou Alrim</title>
+    <title>معرض أعمال الجبسم بورد | Masonry & Slider</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         :root { --gold: #c9a054; --dark: #1a1a1a; --light: #f9f9f9; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
-        body { background-color: var(--light); color: #333; }
+        body { background-color: var(--light); color: #333; line-height: 1.6; }
         header { background: var(--dark); color: #fff; padding: 60px 20px; text-align: center; border-bottom: 5px solid var(--gold); }
         .back-link { color: var(--gold); text-decoration: none; font-weight: bold; display: block; margin-top: 15px; }
         
-        .container { max-width: 1200px; margin: 50px auto; padding: 0 20px; }
-        .posts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; }
-        
-        /* تصميم البطاقة الجديد */
-        .post-card { background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: 0.3s; display: flex; flex-direction: column; height: 100%; border: 1px solid #eee; }
-        .post-card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        
-        .media-container { width: 100%; height: 230px; background: #000; overflow: hidden; position: relative; }
-        .media-container img, .media-container iframe { width: 100%; height: 100%; object-fit: cover; border: none; }
-        
-        .post-info { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
-        .post-info h3 { font-size: 22px; color: var(--dark); margin-bottom: 12px; }
-        .post-info p { font-size: 15px; color: #666; line-height: 1.7; margin-bottom: 20px; flex-grow: 1; }
-        
-        .post-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 15px; border-top: 1px solid #eee; }
-        .date-tag { font-size: 13px; color: #999; }
-        .action-btn { background: var(--gold); color: white; padding: 8px 18px; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 700; transition: 0.3s; }
-        .action-btn:hover { background: var(--dark); }
+        /* تصميم الشبكة Masonry لحل مشكلة الـ Crop */
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; columns: 3 300px; column-gap: 30px; }
+        @media (max-width: 800px) { columns: 2 280px; }
+        @media (max-width: 500px) { columns: 1; }
 
-        .loading-msg { grid-column: 1/-1; text-align: center; padding: 100px; font-size: 20px; color: #999; }
+        .post-card { break-inside: avoid-column; background: #fff; border-radius: 12px; margin-bottom: 30px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; border: 1px solid #eee; display: inline-block; width: 100%; }
+        .post-card:hover { transform: scale(1.02); }
+
+        /* تصميم السلايدر لعرض الصور المتعددة جوا البطاقة */
+        .post-slider { position: relative; width: 100%; background: #000; overflow: hidden; }
+        .post-slider img { width: 100%; height: auto; object-fit: contain; display: none; } /* تم حل مشكلة الـ Crop باستخدام contain وعرض كامل */
+        .post-slider img.active { display: block; }
+        .slider-nav { position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; transform: translateY(-50%); padding: 0 10px; cursor: pointer; color: white; font-size: 20px; text-shadow: 0 0 5px rgba(0,0,0,0.5); }
+        
+        .post-info { padding: 20px; }
+        .post-info h3 { font-size: 18px; color: var(--dark); margin-bottom: 8px; }
+        .post-info p { font-size: 13px; color: #666; margin-bottom: 15px; text-align: justify; }
+        .date-btn { font-size: 11px; color: #999; text-align: right; margin-top: 10px; }
+        .btn-external { display: block; background: var(--gold); color: white; text-align: center; padding: 10px; text-decoration: none; font-weight: bold; font-size: 13px; border-radius: 5px; margin-top: 10px; }
+        
+        iframe { width: 100%; height: 200px; border: none; }
+        .loading-msg { text-align: center; padding: 100px; font-size: 20px; color: #999; break-inside: avoid; }
     </style>
 </head>
 <body>
-
-    <header>
-        <h1>لمساتنا في <span>الجبسم بورد</span></h1>
-        <p>جودة، دقة، وفخامة في التنفيذ</p>
-        <a href="index.html" class="back-link"><i class="fas fa-home"></i> العودة للرئيسية</a>
-    </header>
-
-    <div class="container">
-        <div class="posts-grid" id="mainContainer">
-            <div class="loading-msg">جاري تحميل المعرض...</div>
-        </div>
-    </div>
+    <header><h1>Touch | معرض <span>الجبسم بورد</span></h1><a href="index.html" class="back-link">العودة للرئيسية</a></header>
+    <div class="container" id="gypsumGrid"><div class="loading-msg">جاري تحميل معرض الروائع...</div></div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, collection, query, where, getDocs, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyBJE9RDaxqogaP6ku-zX7pOEcEXhEdd1Qs",
@@ -61,56 +53,61 @@
             messagingSenderId: "1034802739480",
             appId: "1:1034802739480:web:e1ecf69da0690ba959866d"
         };
-
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // وظيفة ذكية لتحويل روابط يوتيوب العادية لروابط قابلة للتضمين
-        function getMediaHTML(imgUrl, videoUrl) {
-            if (videoUrl && videoUrl.includes('youtube.com/watch?v=')) {
-                const vidId = videoUrl.split('v=')[1].split('&')[0];
-                return `<iframe src="https://www.youtube.com/embed/${vidId}" allowfullscreen></iframe>`;
-            } else if (videoUrl && videoUrl.includes('youtu.be/')) {
-                const vidId = videoUrl.split('be/')[1];
-                return `<iframe src="https://www.youtube.com/embed/${vidId}" allowfullscreen></iframe>`;
-            } else if (imgUrl) {
-                return `<img src="${imgUrl}" alt="عملنا">`;
-            }
-            return `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#555;">بدون وسائط</div>`;
+        // دوال السلايدر
+        window.slideNext = (btn) => { changeSlide(btn, 1); }
+        window.slidePrev = (btn) => { changeSlide(btn, -1); }
+        function changeSlide(btn, direction) {
+            const slider = btn.closest('.post-slider');
+            const images = slider.querySelectorAll('img');
+            let activeIdx = -1;
+            images.forEach((img, idx) => { if(img.classList.contains('active')) activeIdx = idx; img.classList.remove('active'); });
+            
+            let nextIdx = activeIdx + direction;
+            if(nextIdx >= images.length) nextIdx = 0;
+            if(nextIdx < 0) nextIdx = images.length - 1;
+            
+            images[nextIdx].classList.add('active');
         }
 
         async function loadData() {
-            const container = document.getElementById('mainContainer');
+            const grid = document.getElementById('gypsumGrid');
             try {
-                const q = query(collection(db, "posts"), where("page", "==", "gypsum")); // غيرها لـ furniture بصفحة الموبيليا
+                const q = query(collection(db, "posts"), where("page", "==", "gypsum"), orderBy("timestamp", "desc"));
                 const snap = await getDocs(q);
-                
-                if (snap.empty) {
-                    container.innerHTML = `<div class="loading-msg">لا يوجد أعمال حالياً.</div>`;
-                    return;
-                }
-                
-                container.innerHTML = '';
+                if (snap.empty) { grid.innerHTML = `<div class="loading-msg">لا يوجد أعمال منشورة.</div>`; return; }
+                grid.innerHTML = '';
                 snap.forEach(doc => {
                     const data = doc.data();
-                    const card = document.createElement('div');
-                    card.className = 'post-card';
-                    card.innerHTML = `
-                        <div class="media-container">${getMediaHTML(data.imgUrl, data.videoUrl)}</div>
-                        <div class="post-info">
-                            <h3>${data.title}</h3>
-                            <p>${data.desc}</p>
-                            <div class="post-footer">
-                                <span class="date-tag"><i class="far fa-calendar-alt"></i> ${data.createdAt || ''}</span>
-                                ${data.link ? `<a href="${data.link}" target="_blank" class="action-btn">التفاصيل</a>` : ''}
+                    let mediaHTML = '';
+                    
+                    // الكود المطور لعرض السلايدر إذا كانت مصفوفة الصور موجودة
+                    if (data.imagesArray && data.imagesArray.length > 0) {
+                        const imgs = data.imagesArray.map((url, idx) => `<img src="${url}" class="${idx === 0 ? 'active' : ''}" alt="صورة العمل">`).join('');
+                        const nav = data.imagesArray.length > 1 ? `<div class="slider-nav"><i class="fas fa-chevron-right" onclick="slidePrev(this)"></i><i class="fas fa-chevron-left" onclick="slideNext(this)"></i></div>` : '';
+                        mediaHTML = `<div class="post-slider">${imgs}${nav}</div>`;
+                    } else if (data.videoUrl && (data.videoUrl.includes('youtube.com') || data.videoUrl.includes('youtu.be/'))) {
+                        const vidId = data.videoUrl.includes('v=') ? data.videoUrl.split('v=')[1].split('&')[0] : data.videoUrl.split('be/')[1];
+                        mediaHTML = `<iframe src="https://www.youtube.com/embed/${vidId}" allowfullscreen></iframe>`;
+                    } else {
+                        mediaHTML = `<div style="display:flex;align-items:center;justify-content:center;height:100px;background:#eee;color:#555;font-size:12px;">لا يوجد وسائط</div>`;
+                    }
+
+                    grid.innerHTML += `
+                        <div class="post-card">
+                            ${mediaHTML}
+                            <div class="post-info">
+                                <h3>${data.title}</h3>
+                                <p>${data.desc}</p>
+                                ${data.link ? `<a href="${data.link}" target="_blank" class="btn-external">التفاصيل</a>` : ''}
+                                <div class="date-btn">${data.createdAt}</div>
                             </div>
                         </div>
                     `;
-                    container.appendChild(card);
                 });
-            } catch (e) {
-                container.innerHTML = `<div class="loading-msg">خطأ في الاتصال.</div>`;
-            }
+            } catch (e) { console.error(e); grid.innerHTML = `<div class="loading-msg" style="color:red;">خطأ بالاتصال. تأكد من إعدادات الفايربيس (Rules & Index).</div>`; }
         }
         loadData();
     </script>
